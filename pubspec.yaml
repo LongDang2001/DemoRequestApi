@@ -24,7 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
   connectivity: ^2.0.2
-  http: ^0.12.2
+  http:
+  firebase_core: ^0.7.0
+  firebase_analytics: ^7.0.1
+  firebase_auth: ^0.20.1
+  google_sign_in: ^4.5.9
+
+#  cloud_firestore: ^0.16.0+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -50,6 +56,56 @@ flutter:
     - assets/nameapp.png
     - assets/icons-250.png
     - assets/group72.png
+    - assets/icons-4.png
+    - assets/icons-23.png
+    - assets/icons-89.png
+    - assets/icons-90.png
+    - assets/icons-93.png
+    - assets/icons-120.png
+    - assets/icons8_crown.png
+    - assets/icons-255.png
+    - assets/NoPath - Copy (-4.png
+    - assets/NoPath - Copy-4.png
+    - assets/Union 27.png
+    - assets/tym 3.png
+    - assets/grapth.png
+    - assets/push.png
+    - assets/buttonNex.png
+    - assets/icons-150.png
+    - assets/icons-149.png
+    - assets/icons-117.png
+    - assets/icons-163.png
+    - assets/icons-167.png
+    - assets/icons-58.png
+    - assets/icons-162.png
+    - assets/icons-245.png
+    - assets/icons-168.png
+    - assets/icons-138.png
+    - assets/icons8_confetti_3.png
+    - assets/NoPath - Copy (23).png
+    - assets/selfie-wall-posing-with-props.png
+    - assets/NoPath - Copy (26).png
+    - assets/NoPath - Copy (25).png
+    - assets/NoPath - Copy (24).png
+    - assets/Group 79.png
+    - assets/NoPath - Copy (22).png
+    - assets/NoPath - Copy (21).png
+    - assets/NoPath - Copy (19).png
+    - assets/NoPath - Copy (18).png
+    - assets/NoPath - Copy (17).png
+    - assets/NoPath - Copy (15).png
+    - assets/LikeTym.png
+    - assets/icons8_chat_bubble.png
+    - assets/icons8_forward_arrow.png
+    - assets/icons8_ratings.png
+    - assets/Group 85.png
+    - assets/Group 84.png
+    - assets/Group 86.png
+    - assets/Group 87.png
+    - assets/Group 88.png
+    - assets/Ellipse 22.png
+    - assets/Group 39.png
+    - assets/Group 54.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

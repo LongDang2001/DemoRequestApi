@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert' as convert;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tiktok/LoginRegister/Register.dart';
 
 
 class ScreenLogin extends StatefulWidget {
@@ -11,6 +14,7 @@ class ScreenLogin extends StatefulWidget {
     return Statelogin();
   }
 }
+
 class Statelogin extends State<ScreenLogin> {
 
   var url = Uri.https('www.googleapis.com', '/books/v1/volumes');
@@ -27,16 +31,21 @@ class Statelogin extends State<ScreenLogin> {
       print('Request failed with status: ${reponse.statusCode}.');
     }
   }
+  FirebaseAuth auth = FirebaseAuth.instance;
+  // FirebaseApp statelogin = Firebase.app('StateLogin');
+  // FirebaseAuth auth = FirebaseAuth.instanceFor(app: statelogin);
 
  // String _conectionStadtus = 'uknow';
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitiresuld;
+
   @override
   void initState() {
     initConnectivity();
     _connectivitiresuld = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
     super.initState();
   }
+
   @override
   void dispose() {
     _connectivitiresuld.cancel();
@@ -44,6 +53,20 @@ class Statelogin extends State<ScreenLogin> {
   }
   Future<void> initConnectivity() async {
     ConnectivityResult result;
+    // khong can goi den future nhung van goi dc async
+    checkinit() async {
+
+    }
+    // check error:
+    dosomthing().then((value) {
+      // .then la de check xem no co bị eror ko>
+      // run code comple,
+
+    }).catchError((error) {
+      // khi muon kiem tra loi cuc bo.
+      // hand error
+    });
+
     try {
       result = await _connectivity.checkConnectivity();
     } catch (e) {
@@ -51,10 +74,59 @@ class Statelogin extends State<ScreenLogin> {
     }
     if (!mounted) {
       return Future.value(null);
-
     }
     return _updateConnectionStatus(result);
     // Platform messages may fail, so we use a try/catch PlatformException.
+  }
+  void verificationCompleted() {
+
+  }
+  Future<void> dosomthing() async {
+
+    await FirebaseAuth.instance.authStateChanges().listen((User user) {
+      if (user == null) {
+        // code
+        print('user sign out');
+      } else {
+        print('user sign in');
+        // dẻ trả về lỗi thì có thể gọi như này:
+
+      }
+    });
+
+    // thôg báo trạng thái thay đổi:
+     await auth.authStateChanges(
+
+     );
+     auth.verifyPhoneNumber(
+        phoneNumber: null,
+        verificationCompleted: (PhoneAuthCredential credential) {
+          credential.providerId.length;
+        },
+        verificationFailed: (FirebaseAuthException error) {
+          // khi ma xac thuc bi loi thif su ly trong nay...
+
+        },
+        codeSent: (String verid, int reser) {
+
+        },
+        codeAutoRetrievalTimeout: null
+    );
+    // goi
+    auth.idTokenChanges(
+      // method nay la khi id xac thuc dc gui di thi goi den ham nay de xuly su kien
+
+    );
+    auth.setPersistence(Persistence.NONE);
+    try {
+      // khi đăng nhập
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: 'null', password: 'null');
+
+    } on FirebaseAuthException catch (error) {
+      // khi xay ra lỗi, hiện thông báo lên:
+      // code trường hơp hiện thông bao, hiện thông báo không đn đc và bảo đăng nhập lại.
+    }
+
   }
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     switch (result) {
